@@ -19,6 +19,7 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "loan_amount")
     private Double loan_amount;
 
     @OneToMany(mappedBy = "loan")

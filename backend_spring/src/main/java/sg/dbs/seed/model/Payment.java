@@ -17,8 +17,10 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "payment_date")
     private LocalDate payment_date;
 
+    @Column(name = "payment_amount")
     private Double payment_amount;
 
     @ManyToOne

@@ -12,7 +12,7 @@ import sg.dbs.seed.repo.LoanRepo;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/loans")
+@RequestMapping("/api/loan")
 @CrossOrigin(origins="http://localhost:3000")
 public class LoanController {
 
@@ -22,9 +22,9 @@ public class LoanController {
     @Autowired
     CustomerLoanRepo clRepo;
 
-    @GetMapping("/all")
-    public List<Loan> findAllLoans(@RequestParam("id") Integer id) {
-        Customer customer =
-    }
+//    @GetMapping("/all")
+//    public List<Loan> findAllLoans(@RequestParam("id") Integer id) {
+//        Customer customer =
+//    }
 
 }
