@@ -38,8 +38,11 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Methods": "*",
           },
-          withCredentials: true,
+          withCredentials: false,
         }
       );
       console.log(JSON.stringify(response?.data));

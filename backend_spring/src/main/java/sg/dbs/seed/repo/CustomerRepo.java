@@ -9,7 +9,7 @@ import sg.dbs.seed.model.Customer;
 @Component
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
-    @Query("SELECT c FROM Customer c WHERE c.id =: id")
+    @Query("SELECT c FROM Customer c WHERE c.id = :id")
     Customer findByID(@Param("id") Integer id);
 
     @Query("SELECT c FROM Customer c WHERE c.email = :email")

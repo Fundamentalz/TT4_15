@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/customer")
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:3000/")
 public class CustomerController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class CustomerController {
     private CustomerService cService;
 
     @PostMapping("/login")
-    public Customer authenticateLogin(@RequestBody String email, @RequestBody String password) {
+    public Customer authenticateLogin(@RequestParam String email, @RequestParam String password) {
 
         Boolean authenticated = cService.authenticateUser(email, password);
 
@@ -35,17 +35,16 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public Map<String, String> registerCustomer(@RequestBody String name,
-                                                @RequestBody String phone,
-                                                @RequestBody String address,
-                                                @RequestBody String email,
-                                                @RequestBody String password) {
+    public Map<String, String> registerCustomer(@RequestParam String name,
+                                                @RequestParam String phone,
+                                                @RequestParam String address,
+                                                @RequestParam String email,
+                                                @RequestParam String password) {
 
         Map<String, String> response = new HashMap<>();
 
         // Check for existing user
-        Customer c1 = cRepo.findByEmail(email);
-        if (c1 != null) {
+        if (cRepo.findByEmail(email) != null) {
             response.put("status", "Username error");
             return response;
         } else {
