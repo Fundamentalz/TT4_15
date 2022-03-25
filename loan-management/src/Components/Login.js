@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import axios from "../api/axios";
-const LOGIN_URL = "/auth";
+const LOGIN_URL = "http://localhost:8080/api/customer/login";
 
 const Login = () => {
   const { setAuth, persist, setPersist } = useAuth();
@@ -16,7 +16,7 @@ const Login = () => {
   const errRef = useRef();
 
   const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd]);
+  }, [user, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,9 +33,12 @@ const Login = () => {
     try {
       const response = await axios.post(
         LOGIN_URL,
-        JSON.stringify({ user, pwd }),
+        JSON.stringify({ user, password }),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
           withCredentials: true,
         }
       );
@@ -43,9 +46,9 @@ const Login = () => {
       //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
+      setAuth({ user, password, roles, accessToken });
       setUser("");
-      setPwd("");
+      setPassword("");
       navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {
@@ -95,8 +98,8 @@ const Login = () => {
         <input
           type="password"
           id="password"
-          onChange={(e) => setPwd(e.target.value)}
-          value={pwd}
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           required
         />
         <button>Sign In</button>

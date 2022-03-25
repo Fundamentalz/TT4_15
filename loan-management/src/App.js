@@ -1,9 +1,9 @@
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
-import Layout from "./components/Layout";
-import RequireAuth from "./components/RequireAuth";
-import PersistLogin from "./components/PersistLogin";
+import Register from "./Components/Register";
+import Login from "./Components/Login";
+import Dashboard from "./Components/Dashboard";
+import Layout from "./Components/Layout";
+import RequireAuth from "./Components/RequireAuth";
+import PersistLogin from "./Components/PersistLogin";
 import { Routes, Route } from "react-router-dom";
 
 const ROLES = {
