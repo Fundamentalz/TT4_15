@@ -1,15 +1,17 @@
 package sg.dbs.seed.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import sg.dbs.seed.model.Customer;
+import sg.dbs.seed.model.CustomerLoan;
 import sg.dbs.seed.model.Loan;
 import sg.dbs.seed.repo.CustomerLoanRepo;
+import sg.dbs.seed.repo.CustomerRepo;
 import sg.dbs.seed.repo.LoanRepo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/loan")
@@ -22,9 +24,31 @@ public class LoanController {
     @Autowired
     CustomerLoanRepo clRepo;
 
-//    @GetMapping("/all")
-//    public List<Loan> findAllLoans(@RequestParam("id") Integer id) {
-//        Customer customer =
-//    }
+    @Autowired
+    CustomerRepo cRepo;
+
+    // Get all of the loan by customer
+    @GetMapping("/all")
+    public List<Loan> findAllLoansByCustomer(@RequestParam String email) {
+        Customer customer = cRepo.findByEmail(email);
+        Integer customer_id = customer.getId();
+
+        List<CustomerLoan> customerLoans = (List<CustomerLoan>) clRepo.findCustomerLoansByCustomerID(customer_id);
+
+        List<Loan> loans = new ArrayList<>();
+
+        for (CustomerLoan cl : customerLoans) {
+            loans.add(cl.getLoan());
+        }
+
+        return loans;
+    }
+
+    // Creating a new loan
+    @PostMapping("/new")
+    public Map<String, String> createLoan(@RequestBody Loan newLoan) {
+        
+    }
+
 
 }
