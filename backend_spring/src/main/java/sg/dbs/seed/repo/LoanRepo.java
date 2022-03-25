@@ -6,7 +6,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import sg.dbs.seed.model.Loan;
 
-@Component
 public interface LoanRepo extends JpaRepository<Loan, Integer> {
 
+    @Query("SELECT l FROM Loan l WHERE l.id =: id")
+    Loan findByID(@Param("id") Integer id);
 }
