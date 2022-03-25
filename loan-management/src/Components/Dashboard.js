@@ -12,15 +12,15 @@ const Home = () => {
 
   return (
     <section>
-      <h1>Home</h1>
+      <h1>Dashboard</h1>
       <br />
       <p>You are logged in!</p>
       <br />
-      <Link to="/editor">Go to the Editor page</Link>
+      <Link to="/currentAccountBalance">Current Account Balance</Link>
       <br />
-      <Link to="/admin">Go to the Admin page</Link>
+      <Link to="/currentLoans">Current Loans</Link>
       <br />
-      <Link to="/lounge">Go to the Lounge</Link>
+      <Link to="/loanHistory">Loan History</Link>
       <br />
       <Link to="/linkpage">Go to the link page</Link>
       <div className="flexGrow">
