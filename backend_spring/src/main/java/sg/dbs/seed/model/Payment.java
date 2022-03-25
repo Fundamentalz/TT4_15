@@ -23,5 +23,4 @@ public class Payment {
 
     @ManyToOne
     private Loan loan;
-
 }

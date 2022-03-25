@@ -24,10 +24,8 @@ public class Loan {
     private Double loan_amount;
 
     @OneToMany(mappedBy = "loan")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<CustomerLoan> customerLoans;
 
     @OneToMany(mappedBy = "payment")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Payment> payments;
 }

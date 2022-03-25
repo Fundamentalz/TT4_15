@@ -26,6 +26,6 @@ public class Customer {
 
     private Double balance;
 
-    @OneToMany(mappedBy = "Customer")
+    @OneToMany(mappedBy = "customer")
     private List<CustomerLoan> customerLoans;
 }
