@@ -3,11 +3,9 @@ package sg.dbs.seed.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import javax.validation.constraints.Past;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -24,8 +22,10 @@ public class Loan {
     private Double loan_amount;
 
     @OneToMany(mappedBy = "loan")
-    private List<CustomerLoan> customerLoans;
+    // to customerloan
+    private Collection<CustomerLoan> customerLoans;
 
-    @OneToMany(mappedBy = "payment")
-    private List<Payment> payments;
+    @OneToMany(mappedBy = "loan")
+    // to payment
+    private Collection<Payment> payments;
 }

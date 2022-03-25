@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String email;
+
+    private String password;
+
     private String name;
 
     private String phone;
@@ -26,6 +31,7 @@ public class Customer {
 
     private Double balance;
 
-    @OneToMany(mappedBy = "customer")
-    private List<CustomerLoan> customerLoans;
+    @OneToMany (mappedBy = "customer")
+    // to customerloan
+    private Collection<CustomerLoan> customerLoans;
 }
